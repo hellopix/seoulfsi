@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>서울 25개구 식중독 위험지도</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Food Poisoning Risk</p>
+        <h1>서울 25개구 식중독 위험지도</h1>
+        <p class="sub">식약처 위험도 API에서 서울특별시 전체값과 자치구별 단계, 지수를 함께 확인합니다.</p>
+      </div>
+      <div class="actions">
+        <select id="day" aria-label="날짜 기준">
+          <option value="today">오늘</option>
+          <option value="tomorrow">내일</option>
+          <option value="afterTomorrow">모레</option>
+        </select>
+        <button id="refreshBtn" type="button">새로고침</button>
+        <a class="ghost" href="/verify.html">검증판</a>
+      </div>
+    </header>
+
+    <section class="dashboard">
+      <div class="mapPane">
+        <div id="map" class="seoulMap" aria-label="서울 자치구 위험도 지도"></div>
+      </div>
+
+      <aside class="sidePane">
+        <section class="cityRisk" id="cityRisk">
+          <div>
+            <span class="label">서울특별시 전체</span>
+            <strong id="cityStage">-</strong>
+            <p id="cityMessage">데이터를 불러오는 중입니다.</p>
+          </div>
+          <div class="cityNumbers">
+            <span>지수 <b id="cityIndex">-</b></span>
+            <span>위험값 <b id="cityRaw">-</b></span>
+            <span>기준일 <b id="cityDate">-</b></span>
+          </div>
+        </section>
+
+        <section class="panel summary">
+          <div>
+            <span class="label">상태</span>
+            <strong id="statusText">준비 중</strong>
+          </div>
+          <div>
+            <span class="label">데이터</span>
+            <strong id="countText">-</strong>
+          </div>
+          <div>
+            <span class="label">자치구 평균</span>
+            <strong id="avgText">-</strong>
+          </div>
+          <div>
+            <span class="label">최고 위험</span>
+            <strong id="topText">-</strong>
+          </div>
+        </section>
+
+        <section class="panel legend">
+          <h2>단계</h2>
+          <div><i class="sw interest"></i><span>관심</span><b>0.0 - 19.8</b></div>
+          <div><i class="sw caution"></i><span>주의</span><b>19.9 - 42.5</b></div>
+          <div><i class="sw alert"></i><span>경고</span><b>42.6 - 79.2</b></div>
+          <div><i class="sw serious"></i><span>심각</span><b>79.3+</b></div>
+        </section>
+
+        <section class="panel">
+          <div class="panelHead">
+            <h2>자치구 목록</h2>
+            <span id="baseText">서울특별시 기준</span>
+          </div>
+          <div id="districtList" class="districtList"></div>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
